@@ -1,0 +1,18 @@
+class Solution {
+    
+public:
+   
+    int sumOfLeftLeaves(TreeNode* root) {
+        int total=0;
+        sumr(root , total);
+        return total;
+    }
+    void sumr(TreeNode* root , int &total){
+        if(!root) return ;
+        if(root->left && !root->left->left && !root->left->right){
+            total += root->left->val;
+        }
+        sumr(root->left,total);
+        sumr(root->right,total);
+    }
+};
