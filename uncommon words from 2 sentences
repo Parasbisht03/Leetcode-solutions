@@ -1,0 +1,60 @@
+class Solution {
+public:
+    vector<string> uncommonFromSentences(string s1, string s2) {
+        unordered_map < string , int> up;
+// taking str vector to store string values and res vector to store output strings
+vector< string> str, res;
+
+	//  pushing a string into str vector every time after space occurs
+	// this is for string 1
+	
+	
+    string s = "";
+    for(int i =0; i< s1.size(); i++){
+        if(s1[i] != ' ')
+            s = s + s1[i];
+        else
+        {
+            str.push_back(s);
+            s = "";
+        }
+    }
+	// pushing this last string  into str vector due to end of string it doesnot have space
+    str.push_back(s);
+    s = "";
+    
+    	//  pushing a string into str vector every time after space occurs
+	// this is for string 2
+	
+ 
+    for(int i =0; i< s2.size(); i++){
+        if(s2[i] != ' ')
+            s = s + s2[i];
+        else
+        {
+            str.push_back(s);
+            s = "";
+        }
+    }
+    str.push_back(s);
+    
+	
+	// counting occurs of every string using unordered_map
+    for(auto val : str)
+    {
+        up[val]++;
+    }
+    
+	// pushing strings to res vector which has count == 1
+    for(auto val : up)
+    {
+        if(val.second == 1)
+            res.push_back(val.first);
+            
+    }
+    
+    return res;
+    
+}
+    
+};
